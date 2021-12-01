@@ -2,28 +2,28 @@ import { CategoryType, LanguageType, CountriesType, SortedByType } from "./types
 
 const NewsAPI = require('newsapi');
 
-interface AllNewsQuery {
-  category?: typeof CategoryType;
-  language: typeof LanguageType;
-  country?: typeof CountriesType;
+export interface AllNewsQuery {
+  category?: typeof CategoryType[number];
+  language: typeof LanguageType[number];
+  country?: typeof CountriesType[number];
   q?: string;
   qInTitle?: string;
   from?: string;
   to?: string;
   pageSize: number;
   page: number,
-  sortedBy: typeof SortedByType;
+  sortedBy: typeof SortedByType[number];
 };
 
-interface HeadLineNewsQuery {
-  category?: typeof CategoryType;
-  country?: typeof CountriesType;
+export interface HeadLineNewsQuery {
+  category?: typeof CategoryType[number];
+  country?: typeof CountriesType[number];
   q?: string;
   pageSize: number;
   page: number,   
 }
 
-const getAllNews = async (params: AllNewsQuery) => {
+export const getAllNews = async (params: AllNewsQuery) => {
   const newsApi = new NewsAPI(process.env.NEWS_APIKEY);
 
   try {
@@ -34,7 +34,7 @@ const getAllNews = async (params: AllNewsQuery) => {
   }
 };
 
-const getHeadLineNews = async (params: HeadLineNewsQuery) => {
+export const getHeadLineNews = async (params: HeadLineNewsQuery) => {
   const newsApi = new NewsAPI(process.env.NEWS_APIKEY);
 
   try {
@@ -45,7 +45,4 @@ const getHeadLineNews = async (params: HeadLineNewsQuery) => {
   }
 };
 
-export default ({
-  getAllNews,
-  getHeadLineNews
-})
+
